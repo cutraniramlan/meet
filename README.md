@@ -1,4 +1,4 @@
-# meet
+# meet App
 
 ##Objective
 To build a serverless, progressive web application (PWA) with React using a
@@ -7,8 +7,8 @@ Calendar API to fetch upcoming events.
 
 Features and Requirements
 Key Features:
-● Filter events by city.
-● Show/hide event details.
+* Filter events by city.
+* Show/hide event details.
 ● Specify number of events.
 ● Use the app when offline.
 ● Add an app shortcut to the home screen.
