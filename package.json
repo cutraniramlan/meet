@@ -52,5 +52,16 @@
   },
   "devDependencies": {
     "gh-pages": "^4.0.0"
+  },
+  "description": "To build a serverless, progressive web application (PWA) with React using a\r test-driven development (TDD) technique. The application uses the Google\r Calendar API to fetch upcoming events.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cutraniramlan/meet.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cutraniramlan/meet/issues"
   }
 }
