@@ -39,7 +39,10 @@ export const getEvents = async () => {
 
   if (token) {
     removeQuery();
-    const url = "YOUR_GET_EVENTS_API_ENDPOINT" + "/" + token;
+    const url =
+      "https://3vxz7rnxdd.execute-api.eu-central-1.amazonaws.com/dev/api/get-auth-url" +
+      "/" +
+      token;
     const result = await axios.get(url);
     if (result.data) {
       var locations = extractLocations(result.data.events);
@@ -51,21 +54,25 @@ export const getEvents = async () => {
   }
 };
 
-export const getAccessToken = async () => {};
-const accessToken = localStorage.getItem("access_token");
-const tokenCheck = accessToken && (await checkToken(accessToken));
+export const getAccessToken = async () => {
+  const accessToken = localStorage.getItem("access_token");
+  const tokenCheck = accessToken && (await checkToken(accessToken));
 
-if (!accessToken || tokenCheck.error) {
-  await localStorage.removeItem("access_token");
-  const searchParams = new URLSearchParams(window.location.search);
-  const code = await searchParams.get("code");
-  if (!code) {
-    const results = await axios.get("YOUR_SERVERLESS_GET_AUTH_URL_ENDPOINT");
-    const { authUrl } = results.data;
-    return (window.location.href = authUrl);
+  if (!accessToken || tokenCheck.error) {
+    await localStorage.removeItem("access_token");
+    const searchParams = new URLSearchParams(window.location.search);
+    const code = await searchParams.get("code");
+    if (!code) {
+      const results = await axios.get(
+        "https://3vxz7rnxdd.execute-api.eu-central-1.amazonaws.com/dev/api/get-auth-url"
+      );
+      const { authUrl } = results.data;
+      return (window.location.href = authUrl);
+    }
+    return code && getToken(code);
   }
-  return code && getToken(code);
-}
+  return accessToken;
+};
 
 const removeQuery = () => {
   if (window.history.pushState && window.location.pathname) {
@@ -82,18 +89,21 @@ const removeQuery = () => {
 };
 
 const getToken = async (code) => {
-  const encodeCode = encodeURIComponent(code);
-  const { access_token } = await fetch(
-    "YOUR_GET_ACCESS_TOKEN_ENDPOINT" + "/" + encodeCode
-  )
-    .then((res) => {
-      return res.json();
-    })
-    .catch((error) => error);
+  try {
+    const encodeCode = encodeURIComponent(code);
 
-  access_token && localStorage.setItem("access_token", access_token);
-
-  return access_token;
+    const response = await fetch(
+      "https://3vxz7rnxdd.execute-api.eu-central-1.amazonaws.com/dev/api/get-auth-url" +
+        "/" +
+        encodeCode
+    );
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const { access_token } = await response.json();
+    access_token && localStorage.setItem("access_token", access_token);
+    return access_token;
+  } catch (error) {
+    error.json();
+  }
 };
-
-return accessToken;

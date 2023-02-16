@@ -67,5 +67,10 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/cutraniramlan/meet/issues"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "axios": "axios/dist/node/axios.cjs"
+    }
   }
 }

@@ -15,7 +15,7 @@ describe("<NumberOfEvents />", () => {
     expect(noeInput).toBeDefined();
   });
 
-  test("noe-input is 10 (number type) by default", () => {
+  test("noe-input is 32 (number type) by default", () => {
     expect(NumberOfEventsWrapper.find("input.noe-input").prop("type")).toBe(
       "number"
     );
