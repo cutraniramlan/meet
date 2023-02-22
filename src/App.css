@@ -1,20 +1,3 @@
-:root {
-  /* change these top variables to change the theme! */
-  --primary-hue: 190;
-  --light-angle: 65deg;
-  --monochrome-alpha: 63%;
-  
-  --bg: hsl(var(--primary-hue), 50%, 30%);
-  --bg-dark: hsl(var(--primary-hue), 50%, 20%);
-  --heading-text: hsl(calc(var(--primary-hue) - 45), 100%, 80%);
-  --heading-bg: hsla(calc(var(--primary-hue) - 15), 100%, 65%, 20%);
-  --gray88: hsla(0, 0%, 88%, var(--monochrome-alpha));
-  --white-alpha: hsla(0, 0%, 100%, var(--monochrome-alpha));
-  --black-alpha: hsla(0, 0%, 0%, var(--monochrome-alpha));
-  --gray50: hsl(0, 0%, 50%);
-  background: linear-gradient(var(--light-angle), var(--bg-dark), var(--bg) 200%);
-}
-
 :root * { box-sizing: border-box; }
 
 .App {
