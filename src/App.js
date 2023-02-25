@@ -19,28 +19,29 @@ class App extends Component {
 
   render() {
     if (this.state.showWelcomeScreen === undefined)
-      return (
-        <div className="App">
-          {!navigator.onLine && (
-            <InfoAlert
-              className="alert-centered"
-              text="App is currently offline. You are seeing your cached data."
-            />
-          )}
-          <CitySearch
-            locations={this.state.locations}
-            updateEvents={this.updateEvents}
+      return <div className="App" />;
+    return (
+      <div className="App">
+        {!navigator.onLine && (
+          <InfoAlert
+            className="alert-centered"
+            text="App is currently offline. You are seeing your cached data."
           />
-          <NumberOfEvents />
-          <EventList events={this.state.events} />
-          <WelcomeScreen
-            showWelcomeScreen={this.state.showWelcomeScreen}
-            getAccessToken={() => {
-              getAccessToken();
-            }}
-          />
-        </div>
-      );
+        )}
+        <CitySearch
+          locations={this.state.locations}
+          updateEvents={this.updateEvents}
+        />
+        <NumberOfEvents />
+        <EventList events={this.state.events} />
+        <WelcomeScreen
+          showWelcomeScreen={this.state.showWelcomeScreen}
+          getAccessToken={() => {
+            getAccessToken();
+          }}
+        />
+      </div>
+    );
   }
 
   updateEvents = (location) => {
