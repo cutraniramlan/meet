@@ -50,6 +50,7 @@ export const getEvents = async () => {
       localStorage.setItem("locations", JSON.stringify(locations));
     }
     if (!navigator.onLine) {
+      // eslint-disable-next-line
       const data = localStorage.getItem("lastEvents");
       NProgress.done();
       return result.data.events;
