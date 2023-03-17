@@ -92,6 +92,7 @@ class App extends Component {
     // });
 
     if ((code || isTokenValid) && this.mounted) {
+      console.log("valid");
       getEvents().then((events) => {
         if (this.mounted) {
           this.setState({
