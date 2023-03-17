@@ -35,6 +35,12 @@ export const getEvents = async () => {
     return mockData;
   }
 
+  if (!navigator.onLine) {
+    const data = localStorage.getItem("lastEvents");
+    NProgress.done();
+    return data ? JSON.parse(data).events : [];
+  }
+
   const token = await getAccessToken();
 
   if (token) {
@@ -49,12 +55,9 @@ export const getEvents = async () => {
       localStorage.setItem("lastEvents", JSON.stringify(result.data));
       localStorage.setItem("locations", JSON.stringify(locations));
     }
-    if (!navigator.onLine) {
-      // eslint-disable-next-line
-      const data = localStorage.getItem("lastEvents");
-      NProgress.done();
-      return result.data.events;
-    }
+
+    NProgress.done();
+    return result.data.events;
   }
 };
 
@@ -93,23 +96,39 @@ const removeQuery = () => {
   }
 };
 
-const getToken = async (code) => {
-  try {
-    const encodeCode = encodeURIComponent(code);
-    console.log("code=" + code);
+// const getToken = async (code) => {
+//   try {
+//     const encodeCode = encodeURIComponent(code);
+//     console.log("code=" + code);
 
-    const response = await fetch(
-      "https://3vxz7rnxdd.execute-api.eu-central-1.amazonaws.com/dev/api/token" +
-        "/" +
-        encodeCode
-    );
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-    const { access_token } = await response.json();
-    access_token && localStorage.setItem("access_token", access_token);
-    return access_token;
-  } catch (error) {
-    error.json();
-  }
+//     const response = await fetch(
+//       "https://3vxz7rnxdd.execute-api.eu-central-1.amazonaws.com/dev/api/token" +
+//         "/" +
+//         encodeCode
+//     );
+//     if (!response.ok) {
+//       throw new Error(`HTTP error! status: ${response.status}`);
+//     }
+//     const { access_token } = await response.json();
+//     access_token && localStorage.setItem("access_token", access_token);
+//     return access_token;
+//   } catch (error) {
+//     error.json();
+//   }
+// };
+
+const getToken = async (code) => {
+  const encodeCode = encodeURIComponent(code);
+  const { access_token } = await fetch(
+    "https://3vxz7rnxdd.execute-api.eu-central-1.amazonaws.com/dev/api/token" +
+      "/" +
+      encodeCode
+  )
+    .then((res) => {
+      return res.json();
+    })
+    .catch((error) => error);
+
+  access_token && localStorage.setItem("access_token", access_token);
+  return access_token;
 };
