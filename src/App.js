@@ -66,8 +66,9 @@ class App extends Component {
   getData = () => {
     const { locations, events } = this.state;
     const data = locations.map((location) => {
-      const number = events.filter((event) => event.location === location)
-        .length;
+      const number = events.filter(
+        (event) => event.location === location
+      ).length;
       const city = location.split(", ").shift();
       return { city, number };
     });
@@ -180,12 +181,13 @@ class App extends Component {
           Charts
         </h2>
         {!showWelcomeScreen && (
-          <Carousel
-            showThumbs={false}
-            showStatus={false}
-            showArrows={false}
-            className="data-vis-wrapper w-full mx-6"
-          >
+          // <Carousel
+          //   showThumbs={false}
+          //   showStatus={false}
+          //   showArrows={false}
+          //   className="data-vis-wrapper w-full mx-6"
+          // >
+          <>
             <EventGenre className="mb-20" events={events} />
             <ResponsiveContainer height={400}>
               <ScatterChart
@@ -207,7 +209,8 @@ class App extends Component {
                 />
               </ScatterChart>
             </ResponsiveContainer>
-          </Carousel>
+          </>
+          //          </Carousel>
         )}
         <div className="w-full flex justify-center mt-4">
           {!isLoaded ? (
