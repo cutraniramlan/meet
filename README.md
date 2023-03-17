@@ -1,5 +1,4 @@
-# meet App 
-https://cutraniramlan.github.io/meet/
+# meet App
 
 ## Objective
 To build a serverless, progressive web application (PWA) with React using a
