@@ -181,36 +181,22 @@ class App extends Component {
           Charts
         </h2>
         {!showWelcomeScreen && (
-          // <Carousel
-          //   showThumbs={false}
-          //   showStatus={false}
-          //   showArrows={false}
-          //   className="data-vis-wrapper w-full mx-6"
-          // >
-          <>
-            <EventGenre className="mb-20" events={events} />
-            <ResponsiveContainer height={400}>
-              <ScatterChart
-                margin={{ top: 20, right: 20, bottom: 20, left: 20 }}
-              >
-                <CartesianGrid strokeDasharray="3 3" stroke="#a6afbd" />
-                <XAxis type="category" dataKey="city" name="city" />
-                <YAxis
-                  type="number"
-                  dataKey="number"
-                  name="number of events"
-                  allowDecimals={false}
-                />
-                <Tooltip cursor={{ strokeDasharray: "3 3" }} />
-                <Scatter
-                  data={this.getData()}
-                  fill="#8884d8"
-                  className="dark:fill-coral"
-                />
-              </ScatterChart>
-            </ResponsiveContainer>
-          </>
-          //          </Carousel>
+          <ScatterChart
+            width={400}
+            height={400}
+            margin={{
+              top: 20,
+              right: 20,
+              bottom: 20,
+              left: 20,
+            }}
+          >
+            <CartesianGrid />
+            <XAxis type="category" dataKey="city" name="city" />
+            <YAxis type="number" dataKey="number" name="number of events" />
+            <Tooltip cursor={{ strokeDasharray: "3 3" }} />
+            <Scatter data={this.getData()} fill="#8884d8" />
+          </ScatterChart>
         )}
         <div className="w-full flex justify-center mt-4">
           {!isLoaded ? (
