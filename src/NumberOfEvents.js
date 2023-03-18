@@ -7,7 +7,7 @@ class NumberOfEvents extends Component {
   handleInputChanged = (event, props) => {
     let inputValue = event.target.value;
     let errText;
-
+    console.log(inputValue);
     // don't even allow negative numbers; come on now. loose comparison for "0" == 0
     if (inputValue < 0 || inputValue === 0) inputValue = 0;
     if (!inputValue) errText = "# of events is zero";
@@ -15,7 +15,7 @@ class NumberOfEvents extends Component {
       errText = "The maximumum is 50.";
       inputValue = 50;
     }
-    this.props.updateEvents(null, inputValue);
+    this.props.updateEventsNumber(inputValue);
     this.setState({ noe: inputValue, errorText: errText });
   };
 
