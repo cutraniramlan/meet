@@ -97,7 +97,7 @@ class App extends Component {
       getEvents().then((events) => {
         if (this.mounted) {
           this.setState({
-            events,
+            events: events,
             locations: extractLocations(events),
             isLoaded: true,
           });
@@ -199,7 +199,7 @@ class App extends Component {
               <Scatter data={this.getData()} fill="#8884d8" />
             </ScatterChart>
 
-            <EventGenre className="mb-20" events={events} />
+            <EventGenre className="mb-20" events={this.state.events} />
           </>
         )}
         <div className="w-full flex justify-center mt-4">
