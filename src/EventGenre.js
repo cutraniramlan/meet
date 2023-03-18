@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { PieChart, Pie, ResponsiveContainer } from "recharts";
+import { PieChart, Pie, ResponsiveContainer, Cell, Legend } from "recharts";
 
 const EventGenre = ({ events }) => {
   console.log("events");
   console.log(events);
   const [data, setData] = useState([]);
+
+  const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#fd768c"];
 
   useEffect(() => {
     console.log(events);
@@ -22,22 +24,51 @@ const EventGenre = ({ events }) => {
     setData(() => getData());
   }, [events]);
 
+  const RADIAN = Math.PI / 180;
+  const renderCustomizedLabel = ({
+    cx,
+    cy,
+    midAngle,
+    innerRadius,
+    outerRadius,
+    percent,
+    index,
+  }) => {
+    const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+    const x = cx + radius * Math.cos(-midAngle * RADIAN);
+    const y = cy + radius * Math.sin(-midAngle * RADIAN);
+
+    return (
+      <text
+        x={x}
+        y={y}
+        fill="white"
+        textAnchor={x > cx ? "start" : "end"}
+        dominantBaseline="central"
+      >
+        {`${(percent * 100).toFixed(0)}%`}
+      </text>
+    );
+  };
+
   return (
     <ResponsiveContainer height={400}>
-      <PieChart width={400} height={400}>
+      <PieChart>
         <Pie
           data={data}
-          cx="200"
-          cy="200"
+          cx="50%"
+          cy="50%"
           labelLine={false}
-          outerRadius={80}
-          fill="hsl(190, 100%, 70%)"
-          stroke="black"
+          label={renderCustomizedLabel}
+          outerRadius={100}
+          fill="#8884d8"
           dataKey="value"
-          label={({ name, percent }) =>
-            `${name} ${(percent * 100).toFixed(0)}%`
-          }
-        ></Pie>
+        >
+          {data.map((entry, index) => (
+            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+          ))}
+        </Pie>
+        <Legend verticalAlign="top" height={36} />
       </PieChart>
     </ResponsiveContainer>
   );
