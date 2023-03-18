@@ -126,7 +126,7 @@ class App extends Component {
             locations={this.state.locations}
             updateLocation={this.updateLocation}
           />
-          <h2> Number of events </h2>
+
           <NumberOfEvents
             eventsNumber={this.state.eventsNumber}
             updateEventsNumber={this.updateEventsNumber}
