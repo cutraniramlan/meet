@@ -32,7 +32,7 @@ const EventGenre = ({ events }) => {
           labelLine={false}
           outerRadius={80}
           fill="hsl(190, 100%, 70%)"
-          /*  stroke="black" */
+          stroke="black"
           dataKey="value"
           label={({ name, percent }) =>
             `${name} ${(percent * 100).toFixed(0)}%`
