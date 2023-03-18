@@ -36,7 +36,7 @@ class App extends Component {
           ? events
           : events.filter((event) => event.location === location);
       this.setState({
-        events: locationEvents,
+        events: locationEvents.slice(0, this.state.eventsNumber),
       });
     });
   };
@@ -95,6 +95,7 @@ class App extends Component {
     if ((code || isTokenValid) && this.mounted) {
       console.log("code or token valid");
       getEvents().then((events) => {
+        events = events.slice(0, this.state.eventsNumber);
         if (this.mounted) {
           this.setState({
             events: events,
