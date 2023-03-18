@@ -2,10 +2,12 @@ import React, { useEffect, useState } from "react";
 import { PieChart, Pie, ResponsiveContainer } from "recharts";
 
 const EventGenre = ({ events }) => {
+  console.log("events");
   console.log(events);
   const [data, setData] = useState([]);
 
   useEffect(() => {
+    console.log(events);
     const getData = () => {
       const genres = ["React", "JavaScript", "Node", "jQuery", "AngularJS"];
 
