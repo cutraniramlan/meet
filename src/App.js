@@ -42,9 +42,10 @@ class App extends Component {
   };
 
   updateEventsNumber = (eventNumb) => {
-    getEvents().then(() => {
+    getEvents().then((events) => {
       this.setState({
         eventsNumber: eventNumb,
+        events: events,
       });
     });
   };
