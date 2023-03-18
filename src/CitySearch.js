@@ -37,7 +37,7 @@ class CitySearch extends Component {
       infoText: "",
     });
 
-    this.props.updateEvents(suggestion);
+    this.props.updateLocation(suggestion);
   };
 
   handleInputFocus = () => {

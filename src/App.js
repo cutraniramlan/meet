@@ -147,23 +147,24 @@ class App extends Component {
         {!showWelcomeScreen && (
           <div className="data-vis-wrapper">
             <EventGenre className="mb-20" events={events} />
-
-            <ScatterChart
-              width={400}
-              height={400}
-              margin={{
-                top: 20,
-                right: 20,
-                bottom: 20,
-                left: 20,
-              }}
-            >
-              <CartesianGrid />
-              <XAxis type="category" dataKey="city" name="city" />
-              <YAxis type="number" dataKey="number" name="number of events" />
-              <Tooltip cursor={{ strokeDasharray: "3 3" }} />
-              <Scatter data={this.getData()} fill="#8884d8" />
-            </ScatterChart>
+            <ResponsiveContainer height={400}>
+              <ScatterChart
+                width={400}
+                height={400}
+                margin={{
+                  top: 20,
+                  right: 20,
+                  bottom: 20,
+                  left: 20,
+                }}
+              >
+                <CartesianGrid />
+                <XAxis type="category" dataKey="city" name="city" />
+                <YAxis type="number" dataKey="number" name="number of events" />
+                <Tooltip cursor={{ strokeDasharray: "3 3" }} />
+                <Scatter data={this.getData()} fill="#8884d8" />
+              </ScatterChart>
+            </ResponsiveContainer>
           </div>
         )}
         <div className="w-full flex justify-center mt-4">
