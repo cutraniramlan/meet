@@ -18,7 +18,6 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { Carousel } from "react-responsive-carousel";
 
 class App extends Component {
   state = {
@@ -181,7 +180,8 @@ class App extends Component {
           Charts
         </h2>
         {!showWelcomeScreen && (
-          <>
+          <div className="data-vis-wrapper">
+            <EventGenre className="mb-20" events={events} />
             <ScatterChart
               width={400}
               height={400}
@@ -198,9 +198,7 @@ class App extends Component {
               <Tooltip cursor={{ strokeDasharray: "3 3" }} />
               <Scatter data={this.getData()} fill="#8884d8" />
             </ScatterChart>
-
-            <EventGenre className="mb-20" events={events} />
-          </>
+          </div>
         )}
         <div className="w-full flex justify-center mt-4">
           {!isLoaded ? (
