@@ -199,7 +199,7 @@ class App extends Component {
               <Scatter data={this.getData()} fill="#8884d8" />
             </ScatterChart>
 
-            <EventGenre className="mb-20" events={this.state.events} />
+            <EventGenre className="mb-20" events={events} />
           </>
         )}
         <div className="w-full flex justify-center mt-4">
