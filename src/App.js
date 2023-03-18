@@ -45,7 +45,7 @@ class App extends Component {
     getEvents().then((events) => {
       this.setState({
         eventsNumber: eventNumb,
-        events: events,
+        events: events.slice(0, eventNumb),
       });
     });
   };
