@@ -182,6 +182,7 @@ class App extends Component {
         {!showWelcomeScreen && (
           <div className="data-vis-wrapper">
             <EventGenre className="mb-20" events={events} />
+
             <ScatterChart
               width={400}
               height={400}
