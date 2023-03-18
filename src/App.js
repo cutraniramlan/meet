@@ -112,7 +112,7 @@ class App extends Component {
   }
 
   render() {
-    const { events, showWelcomeScreen, isLight, isLoaded } = this.state;
+    const { events, showWelcomeScreen } = this.state;
 
     if (showWelcomeScreen === undefined) return <div className="App" />;
 
@@ -167,15 +167,11 @@ class App extends Component {
           </div>
         )}
         <div className="w-full flex justify-center mt-4">
-          {!isLoaded ? (
-            <div className="loader border-solid border-4 border-white border-t-coral rounded-full animate-spin w-14 h-14"></div>
-          ) : (
-            <EventList
-              events={events}
-              updateEventsNumber={this.updateEventsNumber}
-              eventsNumber={this.state.eventsNumber}
-            />
-          )}
+          <EventList
+            events={events}
+            updateEventsNumber={this.updateEventsNumber}
+            eventsNumber={this.state.eventsNumber}
+          />
         </div>
         <WelcomeScreen
           showWelcomeScreen={showWelcomeScreen}
